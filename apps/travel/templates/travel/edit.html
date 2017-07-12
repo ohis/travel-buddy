@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+          <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+          <style media="screen">
+            .h1{
+              margin-top: 25px;
+              margin-bottom: 35px
+
+            }
+            .bg{
+              background-color: #33ccff;
+              height: 700px;
+            }
+            .nav-link{
+              text-align: right;
+            }
+
+          </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-toggleable-md navbar-light " style="background-color: #003366;">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="{%url 'travel_dash'%}" style="color:white">Home</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item active">
+        <strong><a class="nav-link" href="{%url 'newTrip'%}" style="color:white"></a></strong>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ">
+      <li class="nav-item active">
+        <strong><a class="nav-link" href="{%url 'destroy'%}" style="color:white">Logout</a></strong>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="bg">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-10">
+          {% if messages %}
+              {% for message in messages %}
+                <p class="error" style="text-align:center">{{message}}</p>
+              {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-10">
+            <h1 class="h1"style="text-align:center">Update Your Schedule</h1>
+        </div>
+
+      <div class="col-10">
+          <form action='/update_trip/{{t.id}}'   method="post">
+            {% csrf_token %}
+              <div class="form-group row">
+          <label for="" class="col-2 col-form-label">Destination:</label>
+          <div class="col-6">
+            <input class="form-control" type="text" value="" name="destination" placeholder="{{t.destination}}">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="" class="col-2 col-form-label">Description:</label>
+          <div class="col-6">
+            <input class="form-control" type="text" name="description" placeholder="{{t.description}}">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="" class="col-2 col-form-label">Travel Date From:</label>
+          <div class="col-6">
+            <input class="form-control" type="date" value="" name="begin" placeholder="{{t.begin_date}}">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="" class="col-2 col-form-label">Travel Date To:</label>
+          <div class="col-6">
+            <input class="form-control" type="date" value="" name="end" placeholder="{{t.end_date}}" >
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+             <div class="offset-sm-2 col-sm-10">
+               <button type="submit" class="btn btn-primary">Submit</button>
+             </div>
+      </div>
+
+
+
+        </form>
+      </div>
+      </div>
+
+    </div>
+  </div>
+  </body>
+</html>

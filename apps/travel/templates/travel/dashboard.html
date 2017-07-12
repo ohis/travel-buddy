@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% load staticfiles %}
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+          <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+          <style>
+
+
+             .destination{
+
+             }
+              .trip{
+               margin-top: 40px
+             }
+             .TravelPlan{
+              /* margin-left: 930px;*/
+               margin-bottom:20px;
+               font-size: 20px
+
+             }
+
+             body{
+               background-image: url("{%static 'img/plan7.jpg' %}");
+               height:auto;
+               width:100%;
+
+               background-position: center;
+               background-repeat: no-repeat;
+               background-size: cover;
+             }
+          </style>
+  </head>
+  <body>
+  <!--<div class="bg">-->
+
+
+    <div class="container">
+      <div class="row">
+          <div class="col-10">
+              <h1 style="margin-top:20px">Hello, {{user.name}}!</h1>
+          </div>
+        <div class="col-40">
+          <a href="{% url 'destroy' %}" class="btn btn-primary btn-lg active" style="margin-top:20px" role="button" aria-pressed="true">Logout</a>
+        </div>
+    </div>
+
+      <div class="row">
+        <div class="col-20">
+            <h4  class="trip" style="margin-left:15px">Your Trip Schedules</h3>
+        </div>
+
+      </div>
+
+      <table class="table table-bordered table-inverse">
+  <thead>
+    <tr>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Plan</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in trip%}
+    <tr>
+      <td><a class="destination"href="{%url 'show' id=t.id%}">{{t.destination}}</a></td>
+      <td>{{t.begin_date.date}}</td>
+      <td>{{t.end_date}}</td>
+      <td>{{t.description}}</td>
+      <td><a href="{%url 'edit' id=t.id%}">Change</a>|<a href="{%url 'remove' id=t.id%}">Remove</a></td>
+    </tr>
+  {% endfor %}
+    {%for joined in other_users_trip%}
+      {% if not user.name == joined.created_by.name %}
+         <tr>
+           <td><a class="destination"href="{%url 'show' id=joined.id%}">{{joined.destination}}</a></td>
+           <td>{{joined.begin_date.date}}</td>
+           <td>{{joined.end_date}}</td>
+           <td>{{joined.description}}</td>
+            <td><strong>Joining </strong>  <a href="{%url 'remove' id=joined.id%}"> Cancel </a></td>
+         </tr>
+         {% endif %}
+        {%endfor%}
+
+
+
+
+
+  </tbody>
+</table>
+
+    <div class="row">
+      <div class="col-20">
+          <h4  class="trip" style="margin-left:15px">Other User's Travel Plans</h3>
+      </div>
+
+    </div>
+
+          <table class="table table-bordered table-inverse">
+      <thead>
+
+        <tr>
+          <th>Name</th>
+          <th>Destination</th>
+          <th>Travel Start Date</th>
+          <th>Travel End Date</th>
+          <th>Do You Want to Join?</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        {% for trip in trips %}
+        <tr>
+          <td>{{trip.created_by.name}}</td>
+          <td><a href="{%url 'show' id=trip.id%}">{{trip.destination}}</a></td>
+          <td>{{trip.begin_date.date}}</td>
+            <td>{{trip.end_date}}</td>
+            <td><a href="{%url 'joinTrip' id=trip.id%}">Join</a></td>
+        </tr>
+
+           {% endfor %}
+
+      </tbody>
+      </table>
+
+
+      <div class="TravelPlan">
+        <strong><a href="{%url 'newTrip'%}"  class="btn btn-primary btn-lg active"  role="button" aria-pressed="true">Add Travel Plan</a></strong>
+      </div>
+
+
+
+
+
+    </div>
+<!--</div>-->
+
+  </body>
+</html>

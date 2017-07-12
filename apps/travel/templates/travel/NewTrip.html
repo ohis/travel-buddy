@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <style media="screen">
+          body{
+            background-color: #33ccff
+          }
+        </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row" style="margin-top:10px">
+        <div class="col-10">
+          {% if messages %}
+              {% for message in messages %}
+                <p class="error">{{message}}</p>
+              {% endfor %}
+            {% endif %}
+        </div>
+          <div class="col-10">
+                 <h1 style="margin-top:40px">Add a Trip</h1>
+          </div>
+          <div class="col-20">
+            <a href="{%url 'travel_dash'%}" class="btn btn-primary btn-lg active" style="margin-top:20px" role="button" aria-pressed="true">Back</a>
+          </div>
+
+      </div>
+
+  <form action='/addTrip'   method="post">
+    {% csrf_token %}
+      <div class="form-group row">
+  <label for="" class="col-2 col-form-label">Destination</label>
+  <div class="col-6">
+    <input class="form-control" type="text" value="" name="destination">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="" class="col-2 col-form-label">Description</label>
+  <div class="col-6">
+    <input class="form-control" type="text" name="description">
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="" class="col-2 col-form-label">Travel Date From:</label>
+  <div class="col-6">
+    <input class="form-control" type="date" value="" name="begin">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="" class="col-2 col-form-label">Travel Date To:</label>
+  <div class="col-6">
+    <input class="form-control" type="date" value="" name="end">
+  </div>
+</div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-3">
+           <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+    </div>
+
+</form>
+    </div>
+
+
+  </body>
+</html>
