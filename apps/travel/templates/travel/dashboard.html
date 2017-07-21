@@ -24,16 +24,16 @@
                font-size: 20px
 
              }
-
              body{
-               background-image: url("{%static 'img/plan7.jpg' %}");
-               height:auto;
-               width:100%;
+                       background: url("{%static 'img/plan7.jpg' %}") no-repeat center center fixed;
+                       -webkit-background-size: cover;
+                       -moz-background-size:cover;
+                       -o-background-size: cover;
+                       background-size: cover;
 
-               background-position: center;
-               background-repeat: no-repeat;
-               background-size: cover;
-             }
+                     }
+
+
           </style>
   </head>
   <body>
@@ -74,7 +74,7 @@
       <td>{{t.begin_date.date}}</td>
       <td>{{t.end_date}}</td>
       <td>{{t.description}}</td>
-      <td><a href="{%url 'edit' id=t.id%}">Change</a>|<a href="{%url 'remove' id=t.id%}">Remove</a></td>
+      <td><a href="{%url 'edit' id=t.id%}">Change</a> | <a href="{%url 'remove' id=t.id%}">Remove</a></td>
     </tr>
   {% endfor %}
     {%for joined in other_users_trip%}
