@@ -84,7 +84,7 @@
            <td>{{joined.begin_date.date}}</td>
            <td>{{joined.end_date}}</td>
            <td>{{joined.description}}</td>
-            <td><strong>Joining </strong>  <a href="{%url 'remove' id=joined.id%}"> Cancel </a></td>
+            <td><strong>Joining </strong>  <a href="{%url 'cancel' id=joined.id%}"> Cancel </a></td>
          </tr>
          {% endif %}
         {%endfor%}

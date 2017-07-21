@@ -6,6 +6,8 @@ from django.db import models
 
 # Create your models here.
 class TripManager(models.Manager):
+    
+
     def addTrip(self,post):
         is_valid = True
         errors = []

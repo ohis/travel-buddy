@@ -13,9 +13,27 @@ def current_user(request):
     return User.objects.get(id=request.session['user_id'])
 def index(request):
     return render(request, 'travel/index.html')
+def cancel_trip(request,id):
+    user = User.objects.get(id=request.session['user_id'])
+    trip = Trip.objects.get(id=id)
+    print user.name
+    others = user.other_users_trip.get(id=trip.id)
+
+    print user.other_users_trip.remove(trip)#Cancel use this query for cancelling trip
+    print trip.id
+    return redirect(reverse('travel_dash'))
+
 def remove_trip(request,id):
     user = User.objects.get(id=request.session['user_id'])
     trip = Trip.objects.get(id=id)
+    print user.name
+    
+
+
+    print trip.id
+    #Cancel use th
+    #print user.trip.clear()
+
     print trip.delete()
     return redirect(reverse('travel_dash'))
 def update_page(request):

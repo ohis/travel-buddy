@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^edit/(?P<id>\d+)$',views.edit ,name ='edit'),
     url(r'^join_trip/(?P<id>\d+)$',views.join_trip ,name ='joinTrip'),
     url(r'^remove/(?P<id>\d+)$',views.remove_trip ,name ='remove'),
+    url(r'^cancel/(?P<id>\d+)$',views.cancel_trip ,name ='cancel'),
     url(r'^update_trip/(?P<id>\d+)$',views.update ,name ='update'),
     #url(r'^',include('apps.formtest.urls')),
 ]
